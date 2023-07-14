@@ -5,7 +5,17 @@ import { v4 as uuidv4 } from "uuid";
 import { EditTodoForm } from "./EditTodoForm";
 
 export const TodoWrapper = () => {
-  const [todos, setTodos] = useState([]);
+
+  let i = 0
+  const todosall = []
+
+  while (i < 10000) {
+    todosall.push({id: uuidv4(), task: "todo" , completed: false, isEditing: false})
+    i++;
+  }
+
+
+  const [todos, setTodos] = useState(todosall);
 
   const addTodo = (todo) => {
     setTodos([
