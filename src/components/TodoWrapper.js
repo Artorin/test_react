@@ -6,10 +6,21 @@ import { EditTodoForm } from "./EditTodoForm";
 
 export const TodoWrapper = () => {
 
+  // toggle elements
+  const useToggle = (initialState) => {
+    const [toggleValue, setToggleValue] = useState(initialState);
+
+    const toggler = () => { setToggleValue(!toggleValue) };
+    return [toggleValue, toggler]
+  };
+
+  const [toggle, setToggle] = useToggle();
+
+  // add 1000 elements
   let i = 0
   const todosall = []
 
-  while (i < 10000) {
+  while (i < 1000) {
     todosall.push({id: uuidv4(), task: "todo" , completed: false, isEditing: false})
     i++;
   }
@@ -53,9 +64,16 @@ export const TodoWrapper = () => {
   return (
     <div className="TodoWrapper">
       <h1>Get Things Done !</h1>
+
+      <button 
+            onClick={setToggle} 
+            class="btn btn-secondary mb-5">
+          Toggle State
+      </button>
+
       <TodoForm addTodo={addTodo} />
       {/* display todos */}
-      {todos.map((todo) =>
+      {toggle && (todos.map((todo) =>
         todo.isEditing ? (
           <EditTodoForm editTodo={editTask} task={todo} />
         ) : (
@@ -67,7 +85,7 @@ export const TodoWrapper = () => {
             toggleComplete={toggleComplete}
           />
         )
-      )}
+      ))}
     </div>
   );
 };

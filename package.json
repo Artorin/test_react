@@ -1,7 +1,7 @@
 {
   "name": "todo-react",
   "version": "0.1.0",
-  "homepage": "http://Artorin.github.io/test_default",
+  "homepage": "http://Artorin.github.io/test_react",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
