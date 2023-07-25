@@ -19,40 +19,58 @@ body {
 }
 
 h1 {
-  color: #fff;
+  color: #a73c3c;
   margin-bottom: 0.5rem;
   font-size: 1.75rem;
 }
 
 .TodoWrapper {
-  background: #1A1A40;
-  margin-top: 5rem;
-  padding: 2rem;
+  background: #fff;
+  margin-top: 1rem;
+  padding: 1rem;
   border-radius: 5px;
 }
 
 .TodoForm {
   width: 100%;
+  border-bottom: 1px solid #d5d5e0;
+}
+
+.back{
+  padding: 20px;
+  
+}
+
+.font-back{
+  size: 70px;
+  font-size: xx-large;
 }
 
 .todo-input {
   outline: none;
   background: none;
-  border: 1px solid #8758ff;
+  border-top: 1px solid #fcfcff;
+  border-bottom: 1px solid #ffffff;
+  border-left: 1px solid #ffffff;
+  border-right: 1px solid #ffffff;
   padding: 0.5rem 1rem;
   margin-top: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 10px;
   width: 300px;
-  color: #fff;
+  
+}
+
+.btn-down {
+  margin-left: 15px;
 }
 
 .todo-input::placeholder {
-  color: #ffffff4d;
+  color: #0000004d;
 }
 
 .todo-btn {
-  background: #8758ff;
-  color: #fff;
+  background: #e9e7ef;
+  color: #181616;
   border: none;
   padding: 0.55rem;
   cursor: pointer;
@@ -63,12 +81,14 @@ h1 {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #8758ff;
-  color: #fff;
+  
+  color: #1e1c1c;
   padding: 0.75rem 1rem;
-  border-radius: 5px;
+  
   margin-bottom: 1rem;
   cursor: pointer;
+  border-bottom: 1px solid;
+  border-color: #d5d5e0;
 }
 
 .fa-trash {
@@ -76,7 +96,20 @@ h1 {
 }
 
 .completed {
-  color: #c5aeff;
+  color: #3a314e;
   text-decoration: line-through;
 }
  
+.check_btn {
+  color: 'green';
+}
+
+.btn-input {
+  display: flex;
+  justify-content: center;
+}
+
+.btn-self {
+  padding: 5px;
+}
+

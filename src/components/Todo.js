@@ -1,15 +1,33 @@
 import React from 'react'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faPenToSquare } from '@fortawesome/free-solid-svg-icons'
-import { faTrash } from '@fortawesome/free-solid-svg-icons'
+
+import { RxCross2, RxPinLeft } from "react-icons/rx";
+import { RxCheckCircled } from "react-icons/rx";
+import { RxCircle } from "react-icons/rx";
+
+
+
+
 export const Todo = ({task, deleteTodo, editTodo, toggleComplete}) => {
+  
+  const [isGreen, setIsGreen] = React.useState(false)
+  const [isActive, setIsActive] = React.useState(false);
+  
  
   return (
-    <div className="Todo">
-        <p className={`${task.completed ? 'completed' : ""}`} onClick={() => toggleComplete(task.id)}>{task.task}</p>
+    <div className="Todo" onDoubleClick={() => editTodo(task.id)}  >
+      
+      <div className='check_btn' style={{color: isGreen ? 'green' : ''}} onClick={() => {toggleComplete(task.id);}}>
+        {!isActive? <RxCircle onClick={()=>{
+            setIsActive(!isActive);}}/>:
+          <RxCheckCircled onClick={()=>{
+            setIsActive(!isActive)}} />
+        }
+      </div>
+      
+        <p style={{alignItems: 'start'}} className={`${task.completed ? 'completed' : ""}`} >{task.task}</p>
+        
         <div>
-        <FontAwesomeIcon icon={faPenToSquare} onClick={() => editTodo(task.id)} />
-        <FontAwesomeIcon icon={faTrash} onClick={() => deleteTodo(task.id)} />
+        <RxCross2 color='red' onClick={() => deleteTodo(task.id)} />
         </div>
     </div>
   )

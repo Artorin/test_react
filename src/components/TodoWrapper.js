@@ -6,15 +6,7 @@ import { EditTodoForm } from "./EditTodoForm";
 
 export const TodoWrapper = () => {
 
-  // toggle elements
-  const useToggle = (initialState) => {
-    const [toggleValue, setToggleValue] = useState(initialState);
 
-    const toggler = () => { setToggleValue(!toggleValue) };
-    return [toggleValue, toggler]
-  };
-
-  const [toggle, setToggle] = useToggle();
 
   // add 1000 elements
   let i = 0
@@ -62,18 +54,14 @@ export const TodoWrapper = () => {
   };
 
   return (
+    <div className="back">
+      <h1 className="font-back">ToDo List</h1>
     <div className="TodoWrapper">
-      <h1>Get Things Done !</h1>
-
-      <button 
-            onClick={setToggle} 
-            class="btn btn-secondary mb-5">
-          Toggle State
-      </button>
+      
 
       <TodoForm addTodo={addTodo} />
       {/* display todos */}
-      {toggle && (todos.map((todo) =>
+      {todos.map((todo) =>
         todo.isEditing ? (
           <EditTodoForm editTodo={editTask} task={todo} />
         ) : (
@@ -85,7 +73,9 @@ export const TodoWrapper = () => {
             toggleComplete={toggleComplete}
           />
         )
-      ))}
+      )}
     </div>
+    </div>
+
   );
 };
