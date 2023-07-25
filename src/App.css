@@ -27,18 +27,35 @@ h1 {
 .TodoWrapper {
   background: #fff;
   margin-top: 1rem;
-  padding: 1rem;
+  
+  padding-bottom: 1rem;
   border-radius: 5px;
 }
 
 .TodoForm {
   width: 100%;
-  border-bottom: 1px solid #d5d5e0;
+
+  margin-bottom: 5px;
+ 
+}
+
+.btn-down {
+  margin-top: 25px;
+  margin-left: 15px;
+  
+  
 }
 
 .back{
   padding: 20px;
   
+}
+
+.etw-1{
+  display: flex;
+  justify-content: center;
+  border-bottom: 1px solid #d5d5e0;
+  margin-bottom: 15px;
 }
 
 .font-back{
@@ -60,9 +77,7 @@ h1 {
   
 }
 
-.btn-down {
-  margin-left: 15px;
-}
+
 
 .todo-input::placeholder {
   color: #0000004d;
@@ -86,6 +101,8 @@ h1 {
   padding: 0.75rem 1rem;
   
   margin-bottom: 1rem;
+  margin-top: 1rem;
+  
   cursor: pointer;
   border-bottom: 1px solid;
   border-color: #d5d5e0;
@@ -112,4 +129,5 @@ h1 {
 .btn-self {
   padding: 5px;
 }
+
 

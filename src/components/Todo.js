@@ -6,17 +6,24 @@ import { RxCircle } from "react-icons/rx";
 
 
 
-
 export const Todo = ({task, deleteTodo, editTodo, toggleComplete}) => {
   
   const [isGreen, setIsGreen] = React.useState(false)
   const [isActive, setIsActive] = React.useState(false);
+  const [showMessage, setShowMessage] = React.useState(false);
   
  
   return (
-    <div className="Todo" onDoubleClick={() => editTodo(task.id)}  >
+    <div className="Todo" 
+    onMouseEnter={() => {
+      setShowMessage(true);
+    }}
+    onMouseLeave={() => {
+      setShowMessage(false);
+    }} 
+    onDoubleClick={() => editTodo(task.id)}  >
       
-      <div className='check_btn' style={{color: isGreen ? 'green' : ''}} onClick={() => {toggleComplete(task.id);}}>
+      <div className='check_btn' style={{color: isActive ? 'green' : ''}} onClick={() => {toggleComplete(task.id);}}>
         {!isActive? <RxCircle onClick={()=>{
             setIsActive(!isActive);}}/>:
           <RxCheckCircled onClick={()=>{
@@ -26,8 +33,11 @@ export const Todo = ({task, deleteTodo, editTodo, toggleComplete}) => {
       
         <p style={{alignItems: 'start'}} className={`${task.completed ? 'completed' : ""}`} >{task.task}</p>
         
-        <div>
+        <div> {
+        showMessage &&
         <RxCross2 color='red' onClick={() => deleteTodo(task.id)} />
+        }
+        
         </div>
     </div>
   )

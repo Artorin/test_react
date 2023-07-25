@@ -3,9 +3,11 @@ import { Todo } from "./Todo";
 import { TodoForm } from "./TodoForm";
 import { v4 as uuidv4 } from "uuid";
 import { EditTodoForm } from "./EditTodoForm";
+import { RxChevronDown } from "react-icons/rx";
 
 export const TodoWrapper = () => {
 
+  const [isActive, setIsActive] = React.useState(false);
 
 
   // add 1000 elements
@@ -53,29 +55,45 @@ export const TodoWrapper = () => {
     );
   };
 
+  function myFunction(todo) {
+    return todo.completed = !todo.completed;
+  }
+
+  const toggleAll = () => {
+    setTodos(
+      todos.map(myFunction)
+    )
+  };
+
+
+
   return (
     <div className="back">
       <h1 className="font-back">ToDo List</h1>
-    <div className="TodoWrapper">
+      <div className="TodoWrapper">
+        <div className="etw-1">
+        
+            <RxChevronDown className='btn-down' 
+              onClick={toggleAll}
+            />
       
-
-      <TodoForm addTodo={addTodo} />
-      {/* display todos */}
-      {todos.map((todo) =>
-        todo.isEditing ? (
-          <EditTodoForm editTodo={editTask} task={todo} />
-        ) : (
-          <Todo
-            key={todo.id}
-            task={todo}
-            deleteTodo={deleteTodo}
-            editTodo={editTodo}
-            toggleComplete={toggleComplete}
-          />
-        )
-      )}
+            <TodoForm addTodo={addTodo} />
+            </div>
+            {todos.map((todo) =>
+              todo.isEditing ? (
+                <EditTodoForm editTodo={editTask} task={todo} />
+              ) : (
+                <Todo
+                  key={todo.id}
+                  task={todo}
+                  deleteTodo={deleteTodo}
+                  editTodo={editTodo}
+                  toggleComplete={toggleComplete}
+                />
+              )
+            )}
+        
     </div>
     </div>
-
   );
 };
