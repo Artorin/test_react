@@ -1,14 +1,13 @@
 import React from 'react'
 
-import { RxCross2, RxPinLeft } from "react-icons/rx";
+import { RxCross2 } from "react-icons/rx";
 import { RxCheckCircled } from "react-icons/rx";
 import { RxCircle } from "react-icons/rx";
 
 
 
-export const Todo = ({task, deleteTodo, editTodo, toggleComplete}) => {
+export const Todo = ({id, task, deleteTodo, editTodo, toggleComplete}) => {
   
-  const [isGreen, setIsGreen] = React.useState(false)
   const [isActive, setIsActive] = React.useState(false);
   const [showMessage, setShowMessage] = React.useState(false);
   
@@ -21,21 +20,21 @@ export const Todo = ({task, deleteTodo, editTodo, toggleComplete}) => {
     onMouseLeave={() => {
       setShowMessage(false);
     }} 
-    onDoubleClick={() => editTodo(task.id)}  >
+    onDoubleClick={() => editTodo(task.id)}>
       
-      <div className='check_btn' style={{color: isActive ? 'green' : ''}} onClick={() => {toggleComplete(task.id);}}>
-        {!isActive? <RxCircle onClick={()=>{
+      <div className='check_btn' style={{color: task.completed ? 'green' : ''}} onClick={() => {toggleComplete(task.id);}}>
+        {!task.completed? <RxCircle onClick={()=>{
             setIsActive(!isActive);}}/>:
           <RxCheckCircled onClick={()=>{
             setIsActive(!isActive)}} />
         }
       </div>
       
-        <p style={{alignItems: 'start'}} className={`${task.completed ? 'completed' : ""}`} >{task.task}</p>
+        <p style={{alignItems: 'start'}} className={`${task.completed ? 'completed' : "default-todo"}`} >{task.task}</p>
         
-        <div> {
+        <div className='cross'> {
         showMessage &&
-        <RxCross2 color='red' onClick={() => deleteTodo(task.id)} />
+        <RxCross2 color='red'  onClick={() => deleteTodo(task.id)} />
         }
         
         </div>
