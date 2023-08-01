@@ -3,7 +3,6 @@ import { Todo } from "./Todo";
 import { TodoForm } from "./TodoForm";
 import { v4 as uuidv4 } from "uuid";
 import { EditTodoForm } from "./EditTodoForm";
-import { RxChevronDown } from "react-icons/rx";
 
 export const TodoWrapper = () => {
 
@@ -58,7 +57,7 @@ export const TodoWrapper = () => {
     );
   };
 
-  function myFunction(todo) {
+  function toggleAllFunction(todo) {
     if (todo.completed === true) {
       todo.completed = false;
     }
@@ -71,7 +70,7 @@ export const TodoWrapper = () => {
 
   const toggleAll = () => {
     setTodos(
-      todos.map(myFunction))
+      todos.map(toggleAllFunction))
   };
 
 
@@ -82,9 +81,9 @@ export const TodoWrapper = () => {
       <div className="TodoWrapper">
         <div className="etw-1">
 
-          <RxChevronDown className='btn-down'
-            onClick={toggleAll}
-          />
+          <button className="down" onClick={toggleAll}>❯</button>
+
+          
 
           <TodoForm addTodo={addTodo} />
         </div>
