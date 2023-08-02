@@ -58,12 +58,9 @@ export const TodoWrapper = () => {
   };
 
   function toggleAllFunction(todo) {
-    if (todo.completed === true) {
-      todo.completed = false;
-    }
-    if (todo.completed === false) {
-      todo.completed = true;
-    }
+   todo.completed = !todo.completed
+
+   
     
     return todo
   }
