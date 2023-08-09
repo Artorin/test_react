@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Todo } from "./Todo";
 import { TodoForm } from "./TodoForm";
 import { v4 as uuidv4 } from "uuid";
@@ -6,8 +6,7 @@ import { EditTodoForm } from "./EditTodoForm";
 
 export const TodoWrapper = () => {
 
-
-  // add 1000 elements
+  // add N elements
   let i = 0
   const todosall = []
 
@@ -18,20 +17,25 @@ export const TodoWrapper = () => {
 
 
   const [todos, setTodos] = useState(todosall);
+  
+  useEffect(() => {
+    localStorage.setItem(...todosall)
+}, []);
 
   const [value, setValue] = React.useState(todosall.length);
 
   const addTodo = (todo) => {
-    setTodos([
-      ...todos,
-      { id: uuidv4(), task: todo, completed: false, isEditing: false },
-    ]);
-    setValue(todosall.length)
+    const newTodos = [...todos, {id: uuidv4(), task: todo, completed: false, isEditing: false}];
+    setTodos(newTodos);
+    localStorage.setItem('todos', JSON.stringify(newTodos));
+    setValue(JSON.parse(localStorage.todos).length)
   }
 
   const deleteTodo = (id) => {
-    setTodos(todos.filter((todo) => todo.id !== id));
-    setValue(todosall.length)} 
+    const newTodos = todos.filter(todo => todo.id !== id);
+    setTodos(newTodos);
+    localStorage.setItem('todos', JSON.stringify(newTodos));
+    setValue(JSON.parse(localStorage.todos).length)} 
 
   const toggleComplete = (id) => {
     setTodos(
@@ -48,20 +52,15 @@ export const TodoWrapper = () => {
       )
     );
   }
-
+  // check
   const editTask = (task, id) => {
-    setTodos(
-      todos.map((todo) =>
-        todo.id === id ? { ...todo, task, isEditing: !todo.isEditing } : todo
-      )
-    );
+    const newTodos = todos.map(todo => todo.id === id ? {...todo, task, isEditing: !todo.isEditing} : todo);
+    setTodos(newTodos);
+    localStorage.setItem('todos', JSON.stringify(newTodos));
   };
 
   function toggleAllFunction(todo) {
    todo.completed = !todo.completed
-
-   
-    
     return todo
   }
 
@@ -71,17 +70,12 @@ export const TodoWrapper = () => {
   };
 
 
-
   return (
     <div className="back">
       <h1 className="font-back">ToDo List</h1>
       <div className="TodoWrapper">
         <div className="etw-1">
-
           <button className="down" onClick={toggleAll}>❯</button>
-
-          
-
           <TodoForm addTodo={addTodo} />
         </div>
         {todos.map((todo) =>
@@ -97,7 +91,6 @@ export const TodoWrapper = () => {
             />
           )
         )}
-
       </div>
       <p style={{alignItems: 'start'}} className="number-of-elements" >{value} item(s) left</p>
     </div>
